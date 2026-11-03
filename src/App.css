@@ -1,184 +1,1542 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* ==========================================================================
+   ReaksiLab XI — Clean Science Lab Stylesheet
+   Responsif untuk Layar Ponsel, Tablet, dan Desktop
+   ========================================================================== */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+/* Layout Utama */
+.app-layout {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+.main-content {
+  flex: 1;
   width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+/* ==========================================================================
+   1. Navigasi Atas (Navbar)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 20px;
+}
+
+.header-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-icon {
+  font-size: 26px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: var(--primary-soft);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-md);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.3px;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-button {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 40px;
+  transition: all 0.15s ease-in-out;
+}
+
+.nav-button:hover {
+  background: var(--bg-surface-soft);
+  color: var(--text-main);
+}
+
+.nav-button.active {
+  background: var(--bg-surface-soft);
+  color: var(--primary);
+  font-weight: 600;
+  border-color: var(--border-subtle);
+}
+
+.nav-button-highlight {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
+.nav-button-highlight:hover {
+  background: #dbeafe;
+}
+
+/* ==========================================================================
+   2. Hero Section
+   ========================================================================== */
+.hero-section {
+  padding: 32px 0 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--science-cyan-soft);
+  border: 1px solid #a5f3fc;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--science-cyan);
+  margin-bottom: 20px;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--science-cyan);
+  display: inline-block;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.hero-title {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-main);
+  letter-spacing: -0.8px;
+  margin-bottom: 12px;
+  max-width: 800px;
+}
+
+.hero-title-sub {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 6px;
+  letter-spacing: -0.3px;
+}
+
+.hero-description {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 740px;
+  margin: 0 auto 32px;
+}
+
+/* Sasaran Pengguna (Audience Cards) */
+.audience-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 840px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.audience-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.audience-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.audience-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.audience-icon {
+  font-size: 22px;
+}
+
+.audience-tag {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary);
+}
+
+.audience-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.audience-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* Tombol Aksi Utama (Hero CTA) */
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-primary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 32px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--primary);
+  border: 1px solid #1e40af;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 14px 0 rgba(29, 78, 216, 0.35);
+  min-height: 52px;
+  min-width: 200px;
+  transition: all 0.15s ease;
+}
+
+.btn-primary-cta:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px 0 rgba(29, 78, 216, 0.45);
+}
+
+.btn-primary-cta:active {
+  transform: translateY(0);
+}
+
+.btn-arrow {
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.btn-primary-cta:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.hero-privacy-notice {
+  font-size: 13px;
+  color: var(--text-faint);
+  max-width: 580px;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   3. Peta Jalur Pembelajaran & Kartu Modul
+   ========================================================================== */
+.modules-section {
+  padding-top: 24px;
+}
+
+.section-header-block {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.section-main-heading {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.4px;
+  margin-bottom: 8px;
+}
+
+.section-subtext {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 760px;
+  line-height: 1.55;
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 20px;
+}
+
+/* Kartu Modul */
+.module-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.module-card-available {
+  border-color: var(--primary-border);
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.08);
+}
+
+.module-card-available:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.module-card-disabled {
+  background: #fafafa;
+  opacity: 0.85;
+}
+
+.module-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.module-code {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.2px;
+}
+
+.module-status-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-badge-active {
+  background: var(--science-green-soft);
+  color: var(--science-green);
+  border: 1px solid var(--science-green-border);
+}
+
+.status-badge-locked {
+  background: var(--bg-surface-soft);
+  color: var(--text-faint);
+  border: 1px solid var(--border-subtle);
+}
+
+.module-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.module-description {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+/* Bagian Belajar Preview (pada modul aktif) */
+.learning-sections-preview {
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.preview-heading {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  letter-spacing: 0.4px;
+  margin-bottom: 10px;
+}
+
+.sections-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-preview-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.section-number {
+  font-weight: 700;
+  color: var(--primary);
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+.section-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.section-title-text {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.level-pill {
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+  padding: 1px 6px;
+}
+
+.level-makroskopis {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.level-submikroskopis {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.level-simbolik {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Keterangan Modul Belum Tersedia */
+.upcoming-note-box {
+  background: #f1f5f9;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.lock-icon {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.upcoming-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.module-card-footer {
+  margin-top: auto;
+}
+
+.btn-module-open {
+  width: 100%;
+  padding: 12px 18px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  transition: background 0.15s ease;
+}
+
+.btn-module-open:hover {
+  background: var(--primary-hover);
+}
+
+.unavailable-notice {
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-faint);
+  background: var(--bg-surface-soft);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   4. Lembar Belajar Laboratorium (LabStudySheet)
+   ========================================================================== */
+.lab-sheet-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lab-sheet-header {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-height: 40px;
+  margin-bottom: 16px;
+  transition: all 0.15s ease;
+}
+
+.btn-back:hover {
+  background: #e2e8f0;
+  color: var(--text-main);
+}
+
+.lab-badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.lab-id-badge {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lab-topic-badge {
+  background: var(--science-cyan-soft);
+  color: var(--science-cyan);
+  border: 1px solid #a5f3fc;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lab-target-badge {
+  background: var(--bg-surface-soft);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lab-sheet-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.lab-sheet-lead {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Navigasi Tab 3 Level Kimia */
+.representation-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  text-align: left;
+  transition: all 0.15s ease;
+  min-height: 56px;
+}
+
+.tab-item:hover {
+  background: var(--bg-surface-soft);
+}
+
+.tab-item-active {
+  background: var(--primary-soft);
+  border-color: var(--primary-border);
+}
+
+.tab-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  flex-shrink: 0;
+}
+
+.tab-item-active .tab-number {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.tab-label-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.tab-item-active .tab-title {
+  color: var(--primary);
+}
+
+.tab-desc {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* Konten Tab */
+.tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-intro {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+}
+
+.section-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.section-lead {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Fenomena Comparison (Tab 1) */
+.phenomena-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.phenomena-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fast-reaction {
+  border: 1px solid #bbf7d0;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 60px);
+}
+
+.slow-reaction {
+  border: 1px solid #fed7aa;
+  background: linear-gradient(180deg, #fff7ed 0%, #ffffff 60px);
+}
+
+.phenomena-tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.tag-fast {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tag-slow {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.phenomena-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.phenomena-metric {
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.metric-label {
+  color: var(--text-muted);
+}
+
+.metric-value {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.phenomena-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.observation-tip {
+  font-size: 13px;
+  line-height: 1.5;
+  background: #f8fafc;
+  border-left: 3px solid var(--primary);
+  padding: 8px 12px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-main);
+}
+
+/* Inquiry Box */
+.inquiry-box {
+  background: #eff6ff;
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inquiry-badge {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
+.inquiry-question {
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.6;
+  color: #1e3a8a;
+}
+
+.btn-next-tab {
+  align-self: flex-start;
+  padding: 10px 18px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+  transition: background 0.15s ease;
+}
+
+.btn-next-tab:hover {
+  background: var(--primary-hover);
+}
+
+/* ==========================================================================
+   5. Konsep Mol & Partikel (Tab 2)
+   ========================================================================== */
+.mole-concept-deep-dive {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.concept-explanation-card,
+.graph-explanation-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.concept-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.concept-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.concept-points li {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.sub-callout {
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: var(--bg-surface-soft);
+  border-left: 3px solid var(--science-cyan);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+.dynamics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.dynamics-card {
+  padding: 14px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dynamics-card.reactant {
+  background: var(--science-red-soft);
+  border: 1px solid var(--science-red-border);
+}
+
+.dynamics-card.product {
+  background: var(--science-green-soft);
+  border: 1px solid var(--science-green-border);
+}
+
+.dynamics-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.dynamics-card.reactant .dynamics-badge {
+  color: var(--science-red);
+}
+
+.dynamics-card.product .dynamics-badge {
+  color: var(--science-green);
+}
+
+/* Grafik SVG */
+.graph-sketch-container {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.graph-svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+}
+
+.svg-label {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--text-muted);
+}
+
+.graph-caption {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   6. Ruang Rumus Laboratorium (FormulaBox)
+   ========================================================================== */
+.formula-showcase {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.formula-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.formula-icon {
+  font-size: 26px;
+  background: var(--primary-soft);
+  padding: 8px;
+  border-radius: var(--radius-md);
+  line-height: 1;
+}
+
+.formula-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.formula-subheading {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.formula-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.formula-card {
+  background: #fbfcfe;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formula-badge {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary);
+}
+
+.formula-display {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.formula-display-dual {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dual-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dual-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.math-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+  flex-wrap: wrap;
+}
+
+.math-compact {
+  font-size: 16px;
+}
+
+.math-scrollable {
+  overflow-x: auto;
+  max-width: 100%;
+  padding-bottom: 6px;
+  font-size: 15px;
+}
+
+.reaction-equation {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.math-var {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.math-op {
+  color: var(--text-faint);
+}
+
+.math-fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 4px;
+}
+
+.fraction-top {
+  border-bottom: 2px solid var(--text-main);
+  padding-bottom: 3px;
+  font-size: 0.9em;
+}
+
+.fraction-bottom {
+  padding-top: 3px;
+  font-size: 0.9em;
+}
+
+.formula-explanation p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   7. Mini Calculator (RateCalculatorMini)
+   ========================================================================== */
+.calculator-section-wrapper {
+  margin-top: 8px;
+}
+
+.rate-calculator-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.calc-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.calc-icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.calc-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.calc-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.calc-inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.input-control {
+  padding: 10px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  color: var(--text-main);
+  background: #ffffff;
+  outline: none;
+  min-height: 44px;
+  transition: border-color 0.15s ease;
+}
+
+.input-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+.calc-steps-box {
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.steps-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.step-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.step-math {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  overflow-x: auto;
+  display: block;
+}
+
+.step-result-box {
+  background: #ffffff;
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
+.result-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: var(--font-mono);
+}
+
+.result-unit {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.result-explanation {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Rangkuman Kunci Lab */
+.lab-summary-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.summary-icon {
+  font-size: 20px;
+}
+
+.summary-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.summary-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-list li {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  position: relative;
+  padding-left: 18px;
+}
+
+.summary-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   8. Footer
+   ========================================================================== */
+.site-footer {
+  background: #ffffff;
+  border-top: 1px solid var(--border-subtle);
+  padding: 36px 20px 24px;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-brand {
+  max-width: 440px;
+}
+
+.footer-logo {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.footer-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 460px;
+}
+
+.footer-note-item {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-faint);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+  font-size: 13px;
+  color: var(--text-faint);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-version {
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   9. Penyesuaian Responsif Layar Ponsel (< 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px 14px 48px;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .header-container {
+    flex-wrap: wrap;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .hero-title {
+    font-size: 30px;
+  }
+
+  .hero-title-sub {
+    font-size: 19px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .audience-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .representation-tabs {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .tab-item {
+    min-height: 48px;
+  }
+
+  .phenomena-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dynamics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formula-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-inputs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-main {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .btn-primary-cta {
+    width: 100%;
+  }
+
+  .btn-next-tab {
+    width: 100%;
+    text-align: center;
   }
 }
